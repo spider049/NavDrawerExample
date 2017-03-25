@@ -14,11 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BlankFragment.OnFragmentInteractionListener {
 
+    private WebView WebBroser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        WebBroser = (WebView)findViewById(R.id.webView1);
+        WebBroser.setWebViewClient(new WebViewClient());
+        WebBroser.getSettings().setJavaScriptEnabled(true);
+        WebBroser.loadUrl("http://tvgcc.truevisionstv.com/tvgweb/login_revamp.aspx");
     }
 
     @Override
@@ -116,6 +125,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+            BlankFragment blankFragment = BlankFragment.newInstance(10);
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.constraintlaout_for_fragment,
+                    blankFragment,
+                    blankFragment.getTag()
+            ).commit();
 
         } else if (id == R.id.nav_send) {
 
@@ -124,5 +139,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(String data) {
+        Toast.makeText(this, data, Toast.LENGTH_SHORT).show();
     }
 }

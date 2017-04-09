@@ -2,11 +2,9 @@ package com.asuscomm.spideryom049.navdrawerexample;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,14 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.view.View;
 import android.widget.Toast;
+
+// import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BlankFragment.OnFragmentInteractionListener {
 
-    private WebView WebBroser;
+    //private WebView WebBroser;
+    private int testinstance=500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        WebBroser = (WebView)findViewById(R.id.webView1);
-        WebBroser.setWebViewClient(new WebViewClient());
-        WebBroser.getSettings().setJavaScriptEnabled(true);
-        WebBroser.loadUrl("http://tvgcc.truevisionstv.com/tvgweb/login_revamp.aspx");
+       // WebBroser = (WebView)findViewById(R.id.webView1);
+        //WebBroser.setWebViewClient(new WebViewClient());
+        //WebBroser.getSettings().setJavaScriptEnabled(true);
+        //WebBroser.loadUrl("http://tvgcc.truevisionstv.com/tvgweb/login_revamp.aspx");
     }
 
     @Override
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-            BlankFragment blankFragment = BlankFragment.newInstance(10);
+            BlankFragment blankFragment = BlankFragment.newInstance(testinstance);
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.constraintlaout_for_fragment,
                     blankFragment,
@@ -133,6 +133,14 @@ public class MainActivity extends AppCompatActivity
             ).commit();
 
         } else if (id == R.id.nav_send) {
+            Toast.makeText(this,"Device Fregment Click",Toast.LENGTH_LONG).show();
+            DeviceFragment devicefragment = new DeviceFragment();
+            FragmentManager manager = getSupportFragmentManager();
+
+            manager.beginTransaction().replace(R.id.constraintlaout_for_fragment,
+                    devicefragment, devicefragment.getTag()
+            ).commit();
+
 
         }
 

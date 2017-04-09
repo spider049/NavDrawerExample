@@ -1,9 +1,7 @@
 package com.asuscomm.spideryom049.navdrawerexample;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +20,8 @@ public class BlankFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
+    private int reInt;
+
 
 
     // TODO: Rename and change types of parameters
@@ -57,6 +57,7 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         Integer total = mParam1*5;
         onButtonPressed(total.toString());
         // Inflate the layout for this fragment
